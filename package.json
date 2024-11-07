@@ -9,6 +9,7 @@
   "author": "Aleksey Zosiak",
   "license": "ISC",
   "dependencies": {
+    "scss": "^0.2.4",
     "webpack": "^5.96.1"
   },
   "devDependencies": {
