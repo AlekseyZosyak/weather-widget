@@ -1,33 +1,59 @@
 import getRequst from "./services/servises";
+import createTegOption from "./modules/test/test";
 
 
 window.addEventListener('DOMContentLoaded', () => {
-  
+
     const myApiKey = 'c09f348734566ce0124f07e10c69908e';
-    const city = 'Kiev';
-    // const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${myApiKey}&units=metric`;
-    const url2 = 'https://restcountries.com/v3.1/all';
-    const url3 = 'https://countriesnow.space/api/v0.1/countries';
-    
-    
-    
-    
-        
-    getRequst(`http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${myApiKey}`)
+    let city = '';
+    let key = '';
+
+
+    getRequst('https://countriesnow.space/api/v0.1/countries')
         .then(data => {
-            console.log(data)
-        })
+            data.data.forEach(element => {
+                createTegOption('#country', element.country, element.iso2);
+            });
+        });
 
-function addTeg(data) {
-    
-    // data.forEach(element => {
-    //     console.log(element)
-    // });
-    // const optionTeg = document.createElement('option');
-    // optionTeg.textContent = `${item.country} - ${item.iso2}`;
-    // optionTeg.setAttribute('value', `${item.iso2}`)
-    // box.append(optionTeg);
-}   
+        const inputCountry = document.querySelector('#country');
+        const inputCities = document.querySelector('#cities');
+
+        inputCountry.addEventListener('change', () => {
+            key = inputCountry.value;
+            inputCities.textContent = '';
+            
+            getRequst('https://countriesnow.space/api/v0.1/countries')
+            .then(data => {
+                data.data.forEach(element => {
+                    if (key === element.iso2) {
+                        element.cities.forEach(item => {
+                            createTegOption('#cities', item);
+                        })
+                        
+                    }
+                });
+            });    
+
+        });
+
+       
+
+
+
+
+
+    // getRequst(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${myApiKey}`)
+    //     .then(data => {
+    //         console.log(data)
+    //         console.log(`Місто: ${data.name}`);
+    //         console.log(`Температура: ${data.main.temp}°C`);
+    //         console.log(`Відчувається як: ${data.main.feels_like}°C`);
+    //         console.log(`Опис погоди: ${data.weather[0].description}`);
+    //         console.log(`Вологість: ${data.main.humidity}%`);
+    //         console.log(`Швидкість вітру: ${data.wind.speed} м/с`);
+    //         console.log(`Тиск: ${data.main.pressure} гПа`);
+    //     });
 
 
 
@@ -35,8 +61,18 @@ function addTeg(data) {
 
 
 
-        
-        
+
+
+
+    // console.log(`Місто: ${data.name}`);
+    // console.log(`Температура: ${data.main.temp}°C`);
+    // console.log(`Відчувається як: ${data.main.feels_like}°C`);
+    // console.log(`Опис погоди: ${data.weather[0].description}`);
+    // console.log(`Вологість: ${data.main.humidity}%`);
+    // console.log(`Швидкість вітру: ${data.wind.speed} м/с`);
+    // console.log(`Тиск: ${data.main.pressure} гПа`);
+
+
 
 
 });

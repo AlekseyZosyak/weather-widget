@@ -2,23 +2,16 @@ import getRequst from "../../services/servises";
 
 
 
+function createTegOption(id, country, iso2) {
+    const input = document.querySelector(id)
+    const teg = document.createElement('option');
+    teg.textContent = `${country}`;
+    teg.setAttribute('value', `${iso2}`)
+    input.append(teg);
+}
 
-// getRequst(url3)
-//     .then(data => {
-        
-        
-//         data.data.forEach((element, i) => {
-            
-//             arr[i] = {
-//                 country: element.country,
-//                 id: element.iso2,
-//                 cities: element.cities
-//             };   
-//         });
-
-        
-//     });
-    
+export default createTegOption;
+   
 
 
 

@@ -2,6 +2,40 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/js/modules/test/test.js":
+/*!*************************************!*\
+  !*** ./src/js/modules/test/test.js ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _services_servises__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../services/servises */ "./src/js/services/servises.js");
+
+
+
+
+function createTegOption(id, country, iso2) {
+    const input = document.querySelector(id)
+    const teg = document.createElement('option');
+    teg.textContent = `${country}`;
+    teg.setAttribute('value', `${iso2}`)
+    input.append(teg);
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (createTegOption);
+   
+
+
+
+
+
+
+
+/***/ }),
+
 /***/ "./src/js/services/servises.js":
 /*!*************************************!*\
   !*** ./src/js/services/servises.js ***!
@@ -16,7 +50,7 @@ __webpack_require__.r(__webpack_exports__);
 const getRequst = async (url) => {
 
     const response = await fetch(url);
-
+    
     if (!response.ok) {
         throw new Error(`ERROR url: ${url}, status: ${response.status}`)
     }
@@ -94,36 +128,63 @@ var __webpack_exports__ = {};
   \**************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_servises__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./services/servises */ "./src/js/services/servises.js");
+/* harmony import */ var _modules_test_test__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/test/test */ "./src/js/modules/test/test.js");
+
 
 
 
 window.addEventListener('DOMContentLoaded', () => {
-  
+
     const myApiKey = 'c09f348734566ce0124f07e10c69908e';
-    const city = 'Kiev';
-    // const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${myApiKey}&units=metric`;
-    const url2 = 'https://restcountries.com/v3.1/all';
-    const url3 = 'https://countriesnow.space/api/v0.1/countries';
-    
-    
-    
-    
-        
-    (0,_services_servises__WEBPACK_IMPORTED_MODULE_0__["default"])(`http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${myApiKey}`)
+    let city = '';
+    let key = '';
+
+
+    (0,_services_servises__WEBPACK_IMPORTED_MODULE_0__["default"])('https://countriesnow.space/api/v0.1/countries')
         .then(data => {
-            console.log(data)
-        })
+            data.data.forEach(element => {
+                (0,_modules_test_test__WEBPACK_IMPORTED_MODULE_1__["default"])('#country', element.country, element.iso2);
+            });
+        });
 
-function addTeg(data) {
-    
-    // data.forEach(element => {
-    //     console.log(element)
-    // });
-    // const optionTeg = document.createElement('option');
-    // optionTeg.textContent = `${item.country} - ${item.iso2}`;
-    // optionTeg.setAttribute('value', `${item.iso2}`)
-    // box.append(optionTeg);
-}   
+        const inputCountry = document.querySelector('#country');
+        const inputCities = document.querySelector('#cities');
+
+        inputCountry.addEventListener('change', () => {
+            key = inputCountry.value;
+            inputCities.textContent = '';
+            
+            (0,_services_servises__WEBPACK_IMPORTED_MODULE_0__["default"])('https://countriesnow.space/api/v0.1/countries')
+            .then(data => {
+                data.data.forEach(element => {
+                    if (key === element.iso2) {
+                        element.cities.forEach(item => {
+                            (0,_modules_test_test__WEBPACK_IMPORTED_MODULE_1__["default"])('#cities', item);
+                        })
+                        
+                    }
+                });
+            });    
+
+        });
+
+       
+
+
+
+
+
+    // getRequst(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${myApiKey}`)
+    //     .then(data => {
+    //         console.log(data)
+    //         console.log(`Місто: ${data.name}`);
+    //         console.log(`Температура: ${data.main.temp}°C`);
+    //         console.log(`Відчувається як: ${data.main.feels_like}°C`);
+    //         console.log(`Опис погоди: ${data.weather[0].description}`);
+    //         console.log(`Вологість: ${data.main.humidity}%`);
+    //         console.log(`Швидкість вітру: ${data.wind.speed} м/с`);
+    //         console.log(`Тиск: ${data.main.pressure} гПа`);
+    //     });
 
 
 
@@ -131,8 +192,18 @@ function addTeg(data) {
 
 
 
-        
-        
+
+
+
+    // console.log(`Місто: ${data.name}`);
+    // console.log(`Температура: ${data.main.temp}°C`);
+    // console.log(`Відчувається як: ${data.main.feels_like}°C`);
+    // console.log(`Опис погоди: ${data.weather[0].description}`);
+    // console.log(`Вологість: ${data.main.humidity}%`);
+    // console.log(`Швидкість вітру: ${data.wind.speed} м/с`);
+    // console.log(`Тиск: ${data.main.pressure} гПа`);
+
+
 
 
 });
