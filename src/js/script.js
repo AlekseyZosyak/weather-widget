@@ -16,28 +16,28 @@ window.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        const inputCountry = document.querySelector('#country');
-        const inputCities = document.querySelector('#cities');
+    const inputCountry = document.querySelector('#country');
+    const inputCities = document.querySelector('#cities');
 
-        inputCountry.addEventListener('change', () => {
-            key = inputCountry.value;
-            inputCities.textContent = '';
-            
-            getRequst('https://countriesnow.space/api/v0.1/countries')
+    inputCountry.addEventListener('change', () => {
+        key = inputCountry.value;
+        inputCities.textContent = '';
+
+        getRequst('https://countriesnow.space/api/v0.1/countries')
             .then(data => {
                 data.data.forEach(element => {
                     if (key === element.iso2) {
                         element.cities.forEach(item => {
                             createTegOption('#cities', item);
                         })
-                        
+
                     }
                 });
-            });    
+            });
 
-        });
+    });
 
-       
+
 
 
 
