@@ -90,7 +90,49 @@ function renderListCities(key) {
                 }
             });
         });
+<<<<<<< HEAD
 }
+=======
+
+    const inputCountry = document.querySelector('#country');
+    const inputCities = document.querySelector('#cities');
+
+    inputCountry.addEventListener('change', () => {
+        key = inputCountry.value;
+        inputCities.textContent = '';
+
+        getRequst('https://countriesnow.space/api/v0.1/countries')
+            .then(data => {
+                data.data.forEach(element => {
+                    if (key === element.iso2) {
+                        element.cities.forEach(item => {
+                            createTegOption('#cities', item);
+                        })
+
+                    }
+                });
+            });
+
+    });
+
+
+
+
+
+
+
+    // getRequst(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${myApiKey}`)
+    //     .then(data => {
+    //         console.log(data)
+    //         console.log(`Місто: ${data.name}`);
+    //         console.log(`Температура: ${data.main.temp}°C`);
+    //         console.log(`Відчувається як: ${data.main.feels_like}°C`);
+    //         console.log(`Опис погоди: ${data.weather[0].description}`);
+    //         console.log(`Вологість: ${data.main.humidity}%`);
+    //         console.log(`Швидкість вітру: ${data.wind.speed} м/с`);
+    //         console.log(`Тиск: ${data.main.pressure} гПа`);
+    //     });
+>>>>>>> 2156cdbb123b3a411b29d8edb7be506d5e75bfcc
 
 
 
