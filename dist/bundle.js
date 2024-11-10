@@ -15,8 +15,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_servises__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../services/servises */ "./src/js/services/servises.js");
 
 
-
-
 function createTegOption(id, country, iso2) {
     const input = document.querySelector(id)
     const teg = document.createElement('option');
@@ -47,13 +45,14 @@ __webpack_require__.r(__webpack_exports__);
 const getRequst = async (url) => {
 
     const response = await fetch(url);
-    
+
     if (!response.ok) {
         throw new Error(`ERROR url: ${url}, status: ${response.status}`)
     }
-        
+    
     return await response.json();
 }
+
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (getRequst);
 
@@ -118,7 +117,7 @@ const getRequst = async (url) => {
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// This entry needs to be wrapped in an IIFE because it needs to be isolated against other modules in the chunk.
+// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
 /*!**************************!*\
   !*** ./src/js/script.js ***!
@@ -126,6 +125,7 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_servises__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./services/servises */ "./src/js/services/servises.js");
 /* harmony import */ var _modules_test_test__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/test/test */ "./src/js/modules/test/test.js");
+
 
 
 
@@ -178,9 +178,9 @@ function renderList() {
     const buttonReset = document.querySelector('#reset');
     const inputCountry = document.querySelector('#country');
     const inputCities = document.querySelector('#cities');
-    
+
     renderListCountry();
-  
+
     inputCountry.addEventListener('change', () => {
         key = inputCountry.value;
         inputCities.textContent = '';
@@ -218,7 +218,31 @@ function renderListCities(key) {
                 }
             });
         });
+
+
+    const inputCountry = document.querySelector('#country');
+    const inputCities = document.querySelector('#cities');
+
+    inputCountry.addEventListener('change', () => {
+        key = inputCountry.value;
+        inputCities.textContent = '';
+
+        (0,_services_servises__WEBPACK_IMPORTED_MODULE_0__["default"])('https://countriesnow.space/api/v0.1/countries')
+            .then(data => {
+                data.data.forEach(element => {
+                    if (key === element.iso2) {
+                        element.cities.forEach(item => {
+                            (0,_modules_test_test__WEBPACK_IMPORTED_MODULE_1__["default"])('#cities', item);
+                        })
+
+                    }
+                });
+            });
+
+    });
+
 }
+
 
 
 
@@ -247,8 +271,6 @@ function renderListCities(key) {
 // console.log(`Вологість: ${data.main.humidity}%`);
 // console.log(`Швидкість вітру: ${data.wind.speed} м/с`);
 // console.log(`Тиск: ${data.main.pressure} гПа`);
-
-
 
 
 

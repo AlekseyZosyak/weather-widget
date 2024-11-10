@@ -3,6 +3,7 @@ import createTegOption from "./modules/test/test";
 
 
 
+
 // const myApiKey = 'c09f348734566ce0124f07e10c69908e';
 // let city = '';
 // let key = '';
@@ -50,9 +51,9 @@ function renderList() {
     const buttonReset = document.querySelector('#reset');
     const inputCountry = document.querySelector('#country');
     const inputCities = document.querySelector('#cities');
-    
+
     renderListCountry();
-  
+
     inputCountry.addEventListener('change', () => {
         key = inputCountry.value;
         inputCities.textContent = '';
@@ -90,9 +91,7 @@ function renderListCities(key) {
                 }
             });
         });
-<<<<<<< HEAD
-}
-=======
+
 
     const inputCountry = document.querySelector('#country');
     const inputCities = document.querySelector('#cities');
@@ -115,24 +114,8 @@ function renderListCities(key) {
 
     });
 
+}
 
-
-
-
-
-
-    // getRequst(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${myApiKey}`)
-    //     .then(data => {
-    //         console.log(data)
-    //         console.log(`Місто: ${data.name}`);
-    //         console.log(`Температура: ${data.main.temp}°C`);
-    //         console.log(`Відчувається як: ${data.main.feels_like}°C`);
-    //         console.log(`Опис погоди: ${data.weather[0].description}`);
-    //         console.log(`Вологість: ${data.main.humidity}%`);
-    //         console.log(`Швидкість вітру: ${data.wind.speed} м/с`);
-    //         console.log(`Тиск: ${data.main.pressure} гПа`);
-    //     });
->>>>>>> 2156cdbb123b3a411b29d8edb7be506d5e75bfcc
 
 
 
@@ -161,8 +144,6 @@ function renderListCities(key) {
 // console.log(`Вологість: ${data.main.humidity}%`);
 // console.log(`Швидкість вітру: ${data.wind.speed} м/с`);
 // console.log(`Тиск: ${data.main.pressure} гПа`);
-
-
 
 
 
