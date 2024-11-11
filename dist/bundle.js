@@ -1,36 +1,66 @@
 /******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/js/modules/class/class.js":
-/*!***************************************!*\
-  !*** ./src/js/modules/class/class.js ***!
-  \***************************************/
-/***/ (() => {
+/***/ "./src/js/modules/ loading-list-api/loading-list-api.js":
+/*!**************************************************************!*\
+  !*** ./src/js/modules/ loading-list-api/loading-list-api.js ***!
+  \**************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   loadingListCities: () => (/* binding */ loadingListCities),
+/* harmony export */   loadingListCountry: () => (/* binding */ loadingListCountry)
+/* harmony export */ });
+/* harmony import */ var _services_servises__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../services/servises */ "./src/js/services/servises.js");
+/* harmony import */ var _create_teg_option_create_teg_option__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../create-teg-option/create-teg-option */ "./src/js/modules/create-teg-option/create-teg-option.js");
+
+
+
+function loadingListCities(key) {
+    (0,_services_servises__WEBPACK_IMPORTED_MODULE_0__["default"])('https://countriesnow.space/api/v0.1/countries')
+        .then(data => {
+            data.data.forEach(element => {
+                if (key === element.iso2) {
+                    element.cities.forEach(item => {
+                        (0,_create_teg_option_create_teg_option__WEBPACK_IMPORTED_MODULE_1__["default"])('#cities', item, item);
+                    })
+                }
+            });
+        });
+}
+
+function loadingListCountry() {
+    (0,_services_servises__WEBPACK_IMPORTED_MODULE_0__["default"])('https://countriesnow.space/api/v0.1/countries')
+        .then(data => {
+            data.data.forEach(element => {
+                (0,_create_teg_option_create_teg_option__WEBPACK_IMPORTED_MODULE_1__["default"])('#country', element.country, element.iso2);
+            });
+        });
+};
 
 
 
 
 /***/ }),
 
-/***/ "./src/js/modules/test/test.js":
-/*!*************************************!*\
-  !*** ./src/js/modules/test/test.js ***!
-  \*************************************/
+/***/ "./src/js/modules/create-teg-option/create-teg-option.js":
+/*!***************************************************************!*\
+  !*** ./src/js/modules/create-teg-option/create-teg-option.js ***!
+  \***************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _services_servises__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../services/servises */ "./src/js/services/servises.js");
-
 
 function createTegOption(id, country, iso2) {
     const input = document.querySelector(id)
     const teg = document.createElement('option');
     teg.textContent = `${country}`;
-    teg.setAttribute('value', `${iso2}`)
+    teg.setAttribute('value', `${iso2}`);
     input.append(teg);
 }
 
@@ -42,13 +72,118 @@ function createTegOption(id, country, iso2) {
 
 /***/ }),
 
+/***/ "./src/js/modules/main/main.js":
+/*!*************************************!*\
+  !*** ./src/js/modules/main/main.js ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _loading_list_api_loading_list_api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../ loading-list-api/loading-list-api */ "./src/js/modules/ loading-list-api/loading-list-api.js");
+/* harmony import */ var _services_servises__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../services/servises */ "./src/js/services/servises.js");
+/* harmony import */ var _weather_card_weather_card__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../weather-card/weather-card */ "./src/js/modules/weather-card/weather-card.js");
+
+
+
+
+function renderСhooseList() {
+
+    const myApiKey = 'c09f348734566ce0124f07e10c69908e';
+    let city = '';
+   
+
+    const buttonReset = document.querySelector('#reset');
+    const inputCountry = document.querySelector('#country');
+    const inputCities = document.querySelector('#cities');
+    let key = '';
+
+    (0,_loading_list_api_loading_list_api__WEBPACK_IMPORTED_MODULE_0__.loadingListCountry)();
+
+    inputCountry.addEventListener('change', () => {
+        key = inputCountry.value;
+        inputCities.innerHTML = `<option value="" selected disabled>выберите город</option>`;
+        (0,_loading_list_api_loading_list_api__WEBPACK_IMPORTED_MODULE_0__.loadingListCities)(key);
+    });
+
+    // buttonReset.addEventListener('click', () => {
+    //     inputCities.textContent = '';
+    //     inputCountry.textContent = '';
+    //     loadingListCountry();
+    // })
+
+
+  
+
+    inputCities.addEventListener('change', () => {
+        (0,_services_servises__WEBPACK_IMPORTED_MODULE_1__["default"])(`https://api.openweathermap.org/data/2.5/weather?q=${inputCities.value}&units=metric&appid=${myApiKey}`)
+        .then(data => {
+            new _weather_card_weather_card__WEBPACK_IMPORTED_MODULE_2__["default"]('.weather', data.name, data.main.temp, data.weather[0].description, data.main.humidity, data.wind.speed).render();
+            console.log(data)
+            console.log(`Місто: ${data.name}`);
+            console.log(`Температура: ${data.main.temp}°C`);
+            console.log(`Відчувається як: ${data.main.feels_like}°C`);
+            console.log(`Опис погоди: ${data.weather[0].description}`);
+            console.log(`Вологість: ${data.main.humidity}%`);
+            console.log(`Швидкість вітру: ${data.wind.speed} м/с`);
+            console.log(`Тиск: ${data.main.pressure} гПа`);
+        });
+    })
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (renderСhooseList);
+
+/***/ }),
+
+/***/ "./src/js/modules/weather-card/weather-card.js":
+/*!*****************************************************!*\
+  !*** ./src/js/modules/weather-card/weather-card.js ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+
+class WeatherCard {
+    constructor(parendSelector, city, temperature, description, humidity, windSpeed, img) {
+        this.parent = document.querySelector(parendSelector);
+        this.city = city;
+        this.temperature = temperature;
+        this.description = description;
+        this.humidity = humidity;
+        this.windSpeed = windSpeed;
+        this.img = img;
+    }
+
+    render() {
+        const element = document.createElement('div');
+        element.innerHTML = `
+                <h2 class="weather__title">${this.city}</h2>
+                <p>Температура: ${this.temperature}°C</p>
+                <p>Опис погоди: ${this.description}</p>
+                <p>Вологість: ${this.humidity}%</p>
+                <p>Швидкість вітру: ${this.windSpeed} м/с</p>
+        `;
+        this.parent.append(element);
+        console.log(21)
+    }
+}
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (WeatherCard);
+
+/***/ }),
+
 /***/ "./src/js/services/servises.js":
 /*!*************************************!*\
   !*** ./src/js/services/servises.js ***!
   \*************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -99,18 +234,6 @@ const getRequst = async (url) => {
 /******/ 	}
 /******/ 	
 /************************************************************************/
-/******/ 	/* webpack/runtime/compat get default export */
-/******/ 	(() => {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
-/******/ 		__webpack_require__.n = (module) => {
-/******/ 			var getter = module && module.__esModule ?
-/******/ 				() => (module['default']) :
-/******/ 				() => (module);
-/******/ 			__webpack_require__.d(getter, { a: getter });
-/******/ 			return getter;
-/******/ 		};
-/******/ 	})();
-/******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
 /******/ 		// define getter functions for harmony exports
@@ -141,112 +264,37 @@ const getRequst = async (url) => {
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be in strict mode.
+// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
-"use strict";
 /*!**************************!*\
   !*** ./src/js/script.js ***!
   \**************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_servises__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./services/servises */ "./src/js/services/servises.js");
-/* harmony import */ var _modules_test_test__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/test/test */ "./src/js/modules/test/test.js");
-/* harmony import */ var _modules_class_class__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/class/class */ "./src/js/modules/class/class.js");
-/* harmony import */ var _modules_class_class__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_modules_class_class__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _modules_main_main__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/main/main */ "./src/js/modules/main/main.js");
+/* harmony import */ var _modules_create_teg_option_create_teg_option__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/create-teg-option/create-teg-option */ "./src/js/modules/create-teg-option/create-teg-option.js");
 
 
 
 
+window.addEventListener('DOMContentLoaded', () => {
+    (0,_modules_main_main__WEBPACK_IMPORTED_MODULE_1__["default"])();
+})
 // const myApiKey = 'c09f348734566ce0124f07e10c69908e';
 // let city = '';
 // let key = '';
 
 
 
-function renderList() {
-    let key = '';
-    const buttonReset = document.querySelector('#reset');
-    const inputCountry = document.querySelector('#country');
-    const inputCities = document.querySelector('#cities');
-
-    renderListCountry();
-
-    inputCountry.addEventListener('change', () => {
-        key = inputCountry.value;
-        inputCities.textContent = '';
-        renderListCities(key);
-    });
-
-    buttonReset.addEventListener('click', () => {
-        inputCities.textContent = '';
-        inputCountry.textContent = '';
-        renderListCountry();
-    })
-
-}
-
-renderList();
-
-
-function renderListCountry() {
-    (0,_services_servises__WEBPACK_IMPORTED_MODULE_0__["default"])('https://countriesnow.space/api/v0.1/countries')
-        .then(data => {
-            data.data.forEach(element => {
-                (0,_modules_test_test__WEBPACK_IMPORTED_MODULE_1__["default"])('#country', element.country, element.iso2);
-            })
-        })
-}
-
-function renderListCities(key) {
-    (0,_services_servises__WEBPACK_IMPORTED_MODULE_0__["default"])('https://countriesnow.space/api/v0.1/countries')
-        .then(data => {
-            data.data.forEach(element => {
-                if (key === element.iso2) {
-                    element.cities.forEach(item => {
-                        (0,_modules_test_test__WEBPACK_IMPORTED_MODULE_1__["default"])('#cities', item);
-                    })
-                }
-            });
-        });
-
-
-    // const inputCountry = document.querySelector('#country');
-    // const inputCities = document.querySelector('#cities');
-
-    // inputCountry.addEventListener('change', () => {
-    //     key = inputCountry.value;
-    //     inputCities.textContent = '';
-
-    //     getRequst('https://countriesnow.space/api/v0.1/countries')
-    //         .then(data => {
-    //             data.data.forEach(element => {
-    //                 if (key === element.iso2) {
-    //                     element.cities.forEach(item => {
-    //                         createTegOption('#cities', item);
-    //                     })
-
-    //                 }
-    //             });
-    //         });
-
-    // });
-
-}
 
 
 
 
 
-// getRequst(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${myApiKey}`)
-//     .then(data => {
-//         console.log(data)
-//         console.log(`Місто: ${data.name}`);
-//         console.log(`Температура: ${data.main.temp}°C`);
-//         console.log(`Відчувається як: ${data.main.feels_like}°C`);
-//         console.log(`Опис погоди: ${data.weather[0].description}`);
-//         console.log(`Вологість: ${data.main.humidity}%`);
-//         console.log(`Швидкість вітру: ${data.wind.speed} м/с`);
-//         console.log(`Тиск: ${data.main.pressure} гПа`);
-//     });
+
+
+
+
 
 
 

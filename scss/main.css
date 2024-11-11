@@ -11,8 +11,8 @@ body {
 }
 
 .main-box {
-  width: 600px;
-  height: 400px;
+  width: 700px;
+  height: 450px;
   margin: 0 auto;
   padding: 50px;
   border: 0.5px solid black;
@@ -25,6 +25,6 @@ body {
   justify-content: space-evenly;
 }
 .main-box__dropdown {
-  width: 200px;
+  width: 150px;
   border: 1px solid skyblue;
 }/*# sourceMappingURL=main.css.map */
