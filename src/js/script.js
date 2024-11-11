@@ -1,48 +1,10 @@
 import getRequst from "./services/servises";
 import createTegOption from "./modules/test/test";
-
-
-
+import Element from "./modules/class/class";
 
 // const myApiKey = 'c09f348734566ce0124f07e10c69908e';
 // let city = '';
 // let key = '';
-
-
-// getRequst('https://countriesnow.space/api/v0.1/countries')
-//     .then(data => {
-//         data.data.forEach(element => {
-//             createTegOption('#country', element.country, element.iso2);
-//         });
-//     });
-
-//     const inputCountry = document.querySelector('#country');
-//     const inputCities = document.querySelector('#cities');
-
-//     inputCountry.addEventListener('change', () => {
-//         key = inputCountry.value;
-//         inputCities.textContent = '';
-
-//         getRequst('https://countriesnow.space/api/v0.1/countries')
-//         .then(data => {
-//             data.data.forEach(element => {
-//                 if (key === element.iso2) {
-//                     element.cities.forEach(item => {
-//                         createTegOption('#cities', item);
-//                     })
-
-//                 }
-//             });
-//         });    
-
-//     });
-
-
-// getRequst('https://countriesnow.space/api/v0.1/countries')
-//     .then(data => {
-//         console.log(data)
-//     })
-
 
 
 
@@ -93,31 +55,28 @@ function renderListCities(key) {
         });
 
 
-    const inputCountry = document.querySelector('#country');
-    const inputCities = document.querySelector('#cities');
+    // const inputCountry = document.querySelector('#country');
+    // const inputCities = document.querySelector('#cities');
 
-    inputCountry.addEventListener('change', () => {
-        key = inputCountry.value;
-        inputCities.textContent = '';
+    // inputCountry.addEventListener('change', () => {
+    //     key = inputCountry.value;
+    //     inputCities.textContent = '';
 
-        getRequst('https://countriesnow.space/api/v0.1/countries')
-            .then(data => {
-                data.data.forEach(element => {
-                    if (key === element.iso2) {
-                        element.cities.forEach(item => {
-                            createTegOption('#cities', item);
-                        })
+    //     getRequst('https://countriesnow.space/api/v0.1/countries')
+    //         .then(data => {
+    //             data.data.forEach(element => {
+    //                 if (key === element.iso2) {
+    //                     element.cities.forEach(item => {
+    //                         createTegOption('#cities', item);
+    //                     })
 
-                    }
-                });
-            });
+    //                 }
+    //             });
+    //         });
 
-    });
+    // });
 
 }
-
-
-
 
 
 

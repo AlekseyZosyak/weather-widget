@@ -1,6 +1,16 @@
 /******/ (() => { // webpackBootstrap
-/******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
+
+/***/ "./src/js/modules/class/class.js":
+/*!***************************************!*\
+  !*** ./src/js/modules/class/class.js ***!
+  \***************************************/
+/***/ (() => {
+
+
+
+
+/***/ }),
 
 /***/ "./src/js/modules/test/test.js":
 /*!*************************************!*\
@@ -8,6 +18,7 @@
   \*************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -37,6 +48,7 @@ function createTegOption(id, country, iso2) {
   \*************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -87,6 +99,18 @@ const getRequst = async (url) => {
 /******/ 	}
 /******/ 	
 /************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
 /******/ 		// define getter functions for harmony exports
@@ -117,16 +141,17 @@ const getRequst = async (url) => {
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
+// This entry need to be wrapped in an IIFE because it need to be in strict mode.
 (() => {
+"use strict";
 /*!**************************!*\
   !*** ./src/js/script.js ***!
   \**************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_servises__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./services/servises */ "./src/js/services/servises.js");
 /* harmony import */ var _modules_test_test__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/test/test */ "./src/js/modules/test/test.js");
-
-
+/* harmony import */ var _modules_class_class__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/class/class */ "./src/js/modules/class/class.js");
+/* harmony import */ var _modules_class_class__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_modules_class_class__WEBPACK_IMPORTED_MODULE_2__);
 
 
 
@@ -134,42 +159,6 @@ __webpack_require__.r(__webpack_exports__);
 // const myApiKey = 'c09f348734566ce0124f07e10c69908e';
 // let city = '';
 // let key = '';
-
-
-// getRequst('https://countriesnow.space/api/v0.1/countries')
-//     .then(data => {
-//         data.data.forEach(element => {
-//             createTegOption('#country', element.country, element.iso2);
-//         });
-//     });
-
-//     const inputCountry = document.querySelector('#country');
-//     const inputCities = document.querySelector('#cities');
-
-//     inputCountry.addEventListener('change', () => {
-//         key = inputCountry.value;
-//         inputCities.textContent = '';
-
-//         getRequst('https://countriesnow.space/api/v0.1/countries')
-//         .then(data => {
-//             data.data.forEach(element => {
-//                 if (key === element.iso2) {
-//                     element.cities.forEach(item => {
-//                         createTegOption('#cities', item);
-//                     })
-
-//                 }
-//             });
-//         });    
-
-//     });
-
-
-// getRequst('https://countriesnow.space/api/v0.1/countries')
-//     .then(data => {
-//         console.log(data)
-//     })
-
 
 
 
@@ -220,31 +209,28 @@ function renderListCities(key) {
         });
 
 
-    const inputCountry = document.querySelector('#country');
-    const inputCities = document.querySelector('#cities');
+    // const inputCountry = document.querySelector('#country');
+    // const inputCities = document.querySelector('#cities');
 
-    inputCountry.addEventListener('change', () => {
-        key = inputCountry.value;
-        inputCities.textContent = '';
+    // inputCountry.addEventListener('change', () => {
+    //     key = inputCountry.value;
+    //     inputCities.textContent = '';
 
-        (0,_services_servises__WEBPACK_IMPORTED_MODULE_0__["default"])('https://countriesnow.space/api/v0.1/countries')
-            .then(data => {
-                data.data.forEach(element => {
-                    if (key === element.iso2) {
-                        element.cities.forEach(item => {
-                            (0,_modules_test_test__WEBPACK_IMPORTED_MODULE_1__["default"])('#cities', item);
-                        })
+    //     getRequst('https://countriesnow.space/api/v0.1/countries')
+    //         .then(data => {
+    //             data.data.forEach(element => {
+    //                 if (key === element.iso2) {
+    //                     element.cities.forEach(item => {
+    //                         createTegOption('#cities', item);
+    //                     })
 
-                    }
-                });
-            });
+    //                 }
+    //             });
+    //         });
 
-    });
+    // });
 
 }
-
-
-
 
 
 
