@@ -1,0 +1,16 @@
+
+.warning {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    margin-top: 50px;
+    border-radius: 15px;
+    background-color: rgb(239, 182, 182);
+
+    &__logo {
+        width: 70px;
+    }
+    &__inner {
+        margin-left: 30px;
+    }
+}
