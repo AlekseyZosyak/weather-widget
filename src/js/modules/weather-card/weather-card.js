@@ -17,12 +17,6 @@ class WeatherCard {
         return temp;
     }
 
-    // img(desc) {
-    //     switch(desc) {
-    //         case "" = 
-    //     }
-
-    // }
 
     render() {
         const element = document.createElement('div');
@@ -32,12 +26,12 @@ class WeatherCard {
 
                 <div class="weather__container__inner">
                     <span class="weather__temp">${this.roundingTemperature(this.temperature)}<span style="color: black">°C</span></span>
+                    <span>Описание - ${this.description}</span>
                     <samp>Влажность - ${this.humidity} %</samp>
                     <samp>Ветер - ${this.windSpeed} м/с</samp>
-                    <span>Описание - ${this.description}</span>
                 </div>
                 <div class="weather__container__icon">
-                    <img src="/icons/day-sunny-icon.svg" class="weather__icon">
+                    <img src="https://openweathermap.org/img/wn/${this.icon}@2x.png" class="weather__icon">
                 </div>
             </div>
         `;

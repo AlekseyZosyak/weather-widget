@@ -96,9 +96,9 @@ function renderСhooseList() {
     const buttonReset = document.querySelector('#reset');
     const inputCountry = document.querySelector('#country');
     const inputCities = document.querySelector('#cities');
-    let weather = document.querySelector('.weather');
+    const weather = document.querySelector('.weather');
     let key = '';
-    let pasport = 0;
+    let control = 0;
 
     (0,_loading_list_api_loading_list_api__WEBPACK_IMPORTED_MODULE_0__.loadingListCountry)();
 
@@ -120,19 +120,19 @@ function renderСhooseList() {
 
 
     inputCities.addEventListener('change', () => {
-        if (pasport === 1) {
+        if (control === 1) {
             weather.innerHTML = '';
-            pasport = 0;
+            control = 0;
         }
         (0,_services_servises__WEBPACK_IMPORTED_MODULE_1__["default"])(`https://api.openweathermap.org/data/2.5/weather?q=${inputCities.value}&units=metric&appid=${myApiKey}`)
             .then(data => {
-                new _weather_card_weather_card__WEBPACK_IMPORTED_MODULE_2__["default"]('.weather', data.name, data.main.temp, data.weather[0].description, data.main.humidity, data.wind.speed).render();
+                new _weather_card_weather_card__WEBPACK_IMPORTED_MODULE_2__["default"]('.weather', data.name, data.main.temp, data.weather[0].description, data.main.humidity, data.wind.speed, data.weather[0].icon).render();
             })
-            .then(pasport = 1)
+            .then(control = 1)
             .catch(function () {
                 weather.innerHTML = `
                     <div class="warning">
-                        <img class="warning__logo" src="/icons/warning-icon.svg" alt="">
+                        <img class="warning__logo" src="/icons/warning/warning-icon.svg" alt="">
                         <div class="warning__inner">
                             <h2 class="warning__title">Извените, произошла ошибка!</h2>
                             <p class="warning__text">Сервер мало знает про ету страну или город, попробуйте другие регионы...</p>
@@ -176,12 +176,6 @@ class WeatherCard {
         return temp;
     }
 
-    // img(desc) {
-    //     switch(desc) {
-    //         case "" = 
-    //     }
-
-    // }
 
     render() {
         const element = document.createElement('div');
@@ -191,12 +185,12 @@ class WeatherCard {
 
                 <div class="weather__container__inner">
                     <span class="weather__temp">${this.roundingTemperature(this.temperature)}<span style="color: black">°C</span></span>
+                    <span>Описание - ${this.description}</span>
                     <samp>Влажность - ${this.humidity} %</samp>
                     <samp>Ветер - ${this.windSpeed} м/с</samp>
-                    <span>Описание - ${this.description}</span>
                 </div>
                 <div class="weather__container__icon">
-                    <img src="/icons/day-sunny-icon.svg" class="weather__icon">
+                    <img src="https://openweathermap.org/img/wn/${this.icon}@2x.png" class="weather__icon">
                 </div>
             </div>
         `;
@@ -309,8 +303,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 window.addEventListener('DOMContentLoaded', () => {
-    
-    (0,_modules_main_main__WEBPACK_IMPORTED_MODULE_1__["default"])();
+    const myApiKey = 'c09f348734566ce0124f07e10c69908e';
+    (0,_services_servises__WEBPACK_IMPORTED_MODULE_0__["default"])(`https://api.openweathermap.org/data/2.5/weather?q=Kiev&units=metric&appid=${myApiKey}`)
+        .then(data => {
+            console.log(data)
+        })
+    ;(0,_modules_main_main__WEBPACK_IMPORTED_MODULE_1__["default"])();
     
 })
 
