@@ -135,7 +135,7 @@ function renderСhooseList() {
                         <img class="warning__logo" src="/icons/warning/warning-icon.svg" alt="">
                         <div class="warning__inner">
                             <h2 class="warning__title">Извените, произошла ошибка!</h2>
-                            <p class="warning__text">Сервер мало знает про ету страну или город, попробуйте другие регионы...</p>
+                            <p class="warning__text">Сервер мало знает про эту страну или город, попробуйте другие регионы...</p>
                         </div>
                     </div>`
             })
@@ -303,13 +303,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 window.addEventListener('DOMContentLoaded', () => {
-    const myApiKey = 'c09f348734566ce0124f07e10c69908e';
-    (0,_services_servises__WEBPACK_IMPORTED_MODULE_0__["default"])(`https://api.openweathermap.org/data/2.5/weather?q=Kiev&units=metric&appid=${myApiKey}`)
-        .then(data => {
-            console.log(data)
-        })
-    ;(0,_modules_main_main__WEBPACK_IMPORTED_MODULE_1__["default"])();
-    
+    (0,_modules_main_main__WEBPACK_IMPORTED_MODULE_1__["default"])();    
 })
 
 

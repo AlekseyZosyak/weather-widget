@@ -3,13 +3,7 @@ import renderСhooseList from "./modules/main/main";
 import createTegOption from "./modules/create-teg-option/create-teg-option";
 
 window.addEventListener('DOMContentLoaded', () => {
-    const myApiKey = 'c09f348734566ce0124f07e10c69908e';
-    getRequst(`https://api.openweathermap.org/data/2.5/weather?q=Kiev&units=metric&appid=${myApiKey}`)
-        .then(data => {
-            console.log(data)
-        })
-    renderСhooseList();
-    
+    renderСhooseList();    
 })
 
 

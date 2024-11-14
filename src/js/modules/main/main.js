@@ -48,7 +48,7 @@ function renderСhooseList() {
                         <img class="warning__logo" src="/icons/warning/warning-icon.svg" alt="">
                         <div class="warning__inner">
                             <h2 class="warning__title">Извените, произошла ошибка!</h2>
-                            <p class="warning__text">Сервер мало знает про ету страну или город, попробуйте другие регионы...</p>
+                            <p class="warning__text">Сервер мало знает про эту страну или город, попробуйте другие регионы...</p>
                         </div>
                     </div>`
             })
