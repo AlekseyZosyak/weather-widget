@@ -1,6 +1,4 @@
-import getRequst from "./services/servises";
 import renderСhooseList from "./modules/main/main";
-import createTegOption from "./modules/create-teg-option/create-teg-option";
 
 window.addEventListener('DOMContentLoaded', () => {
     renderСhooseList();    

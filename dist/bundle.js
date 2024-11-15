@@ -295,15 +295,11 @@ var __webpack_exports__ = {};
   !*** ./src/js/script.js ***!
   \**************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _services_servises__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./services/servises */ "./src/js/services/servises.js");
-/* harmony import */ var _modules_main_main__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/main/main */ "./src/js/modules/main/main.js");
-/* harmony import */ var _modules_create_teg_option_create_teg_option__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/create-teg-option/create-teg-option */ "./src/js/modules/create-teg-option/create-teg-option.js");
-
-
+/* harmony import */ var _modules_main_main__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/main/main */ "./src/js/modules/main/main.js");
 
 
 window.addEventListener('DOMContentLoaded', () => {
-    (0,_modules_main_main__WEBPACK_IMPORTED_MODULE_1__["default"])();    
+    (0,_modules_main_main__WEBPACK_IMPORTED_MODULE_0__["default"])();    
 })
 
 
